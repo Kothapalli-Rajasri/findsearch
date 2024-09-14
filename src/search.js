@@ -42,33 +42,81 @@ const SearchCountries = () => {
   };
 
   return (
-    <div style={{ textAlign: 'center', padding: '20px' }}>
-      <h2 style={{ color: '#333' }}>Search Countries by Name or Capital</h2>
+    <div style={styles.container}>
+      <h2 style={styles.heading}>Search Countries by Name or Capital</h2>
       <input
         type="text"
         value={searchQuery}
         onChange={handleSearchChange}
         placeholder="Search by country or capital"
-        style={{
-          padding: '10px',
-          width: '300px',
-          borderRadius: '5px',
-          border: '1px solid #ccc',
-          marginBottom: '20px',
-          fontSize: '16px',
-        }}
+        style={styles.input}
       />
       {filteredCountries.length > 0 && (
-        <ul style={{ listStyle: 'none', padding: 0 }}>
+        <ul style={styles.countryList}>
           {filteredCountries.map((country, index) => (
-            <li key={index} style={{ padding: '10px', borderBottom: '1px solid #ccc' }}>
-              <strong>{country.country}</strong> - {country.capital}
+            <li key={index} style={styles.countryItem}>
+              <strong style={styles.countryName}>{country.country}</strong>
+              <span style={styles.capitalName}> - {country.capital}</span>
             </li>
           ))}
         </ul>
       )}
     </div>
   );
+};
+
+const styles = {
+  container: {
+    textAlign: 'center',
+    padding: '20px',
+    backgroundColor: '#f9f9f9',
+    fontFamily: 'Arial, sans-serif',
+  },
+  heading: {
+    color: '#2c3e50',
+    fontSize: '28px',
+    marginBottom: '20px',
+  },
+  input: {
+    padding: '12px',
+    width: '350px',
+    borderRadius: '8px',
+    border: '2px solid #ccc',
+    outline: 'none',
+    fontSize: '16px',
+    transition: 'border 0.3s ease',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+  },
+  countryList: {
+    listStyle: 'none',
+    padding: 0,
+    marginTop: '30px',
+    width: '80%',
+    margin: '0 auto',
+    maxWidth: '600px',
+  },
+  countryItem: {
+    padding: '15px',
+    margin: '10px 0',
+    borderRadius: '8px',
+    backgroundColor: '#fff',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    transition: 'transform 0.3s ease',
+    border: '1px solid #e1e1e1',
+  },
+  countryItemHover: {
+    transform: 'scale(1.03)',
+  },
+  countryName: {
+    fontWeight: 'bold',
+    color: '#34495e',
+  },
+  capitalName: {
+    color: '#7f8c8d',
+  },
 };
 
 export default SearchCountries;
